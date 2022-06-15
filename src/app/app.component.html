@@ -1,0 +1,120 @@
+<div class="card">
+  <form [formGroup]="form" (ngSubmit)="submit()">
+    <span class="ribbon">
+      <div id="write">Напишите нам</div>
+    </span>
+
+
+    <div class="form-control">
+      <div style="display: flex; align-items: center">
+        <div class="grid-item">
+          <label>Ваше имя:</label>
+        </div>
+        <div class="grid-item">
+          <input type="name" formControlName="name">
+        </div>
+      </div>
+      <div class="validation col-right" *ngIf="form.get('name')?.invalid && form.get('name')?.touched">
+        <small *ngIf="form.get('name')?.hasError('required')">
+          Поле не заполнено
+        </small>
+      </div>
+    </div>
+
+
+    <div class="form-control">
+      <div style="display:flex; align-items: center">
+        <div class="grid-item">
+          <label>Ваш Email:</label>
+        </div>
+        <div class="grid-item">
+          <input type="email" formControlName="email">
+        </div>
+      </div>
+      <div class="validation" *ngIf="form.get('email')?.invalid && form.get('email')?.touched">
+        <small *ngIf="form.get('email')?.hasError('required')">
+          Поле не заполнено
+        </small>
+        <small *ngIf="form.get('email')?.errors?.['email']">
+          Введите коррентный Email
+        </small>
+      </div>
+    </div>
+
+    <div class="form-control">
+      <div style="display:flex; align-items: center">
+        <div class="grid-item">
+        <label>Ваш телефон:</label>
+        </div>
+        <div class="grid-item">
+        <input type="number" formControlName="tel">
+        </div>
+      </div>
+      <div class="validation" *ngIf="form.get('tel')?.invalid && form.get('tel')?.touched">
+        <small *ngIf="form.get('tel')?.hasError('required')">
+          Поле не заполнено
+        </small>
+      </div>
+    </div>
+
+    <div class="form-control">
+        <div style="display:flex; align-items: center">
+          <div class="grid-item">
+        <label>Тема:</label>
+      </div>
+          <div class="grid-item">
+        <select formControlName="sub">
+          <option value="ts">Техподдержка</option>
+          <option value="sales">Продажи</option>
+          <option value="other">Другое</option>
+          <option value="any">Еще один пункт</option>
+        </select>
+      </div>
+        </div>
+          <div class="validation" *ngIf="form.get('sub')?.invalid && form.get('sub')?.touched">
+        <small *ngIf="form.get('sub')?.hasError('required')">
+          Выберите один из вариантов ответа
+        </small>
+      </div>
+    </div>
+
+    <div class="form-control">
+      <div style="display:flex; align-items: center">
+        <div class="grid-item">
+          <label>Ваше сообщение:</label>
+        </div>
+        <div class="grid-item">
+          <textarea class="message" name="message" formControlName="message"></textarea>
+        </div>
+      </div>
+      <div class="validation" *ngIf="form.get('message')?.invalid && form.get('message')?.touched">
+        <small *ngIf="form.get('message')?.hasError('required')">Укажите текст обращения</small>
+      </div>
+    </div>
+
+    <div class="form-control">
+      <div style="display: flex; align-items: center">
+        <div class="grid-item">
+          <label class="cap">'2'+'1' = </label>
+        </div>
+        <div class="grid-item">
+          <input type="text" class="captcha" formControlName="captcha">
+        </div>
+      </div>
+      <div class="validation" *ngIf="form.get('captcha')?.invalid && form.get('captcha')?.touched">
+        <small *ngIf="form.get('captcha')?.hasError('required')">
+          Введите значение
+        </small>
+        <small *ngIf="form.get('captcha')?.hasError('pattern')">
+          Неправильно
+        </small>
+      </div>
+    </div>
+
+    <div class="form-control">
+      <button class="btn" type="submit" [disabled]="form.invalid || form.pending">Отправить письмо!</button>
+    </div>
+  </form>
+</div>
+
+
